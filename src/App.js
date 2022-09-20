@@ -25,9 +25,9 @@ function App() {
     setVehicles([...vehicles, {...vehicle }]);
   };
 
-  const filterHandler = (filtererm) => {
-    setFilterTerm(filtererm);
-    console.log("filtererm", filtererm)
+  const filterHandler = (filterName) => {
+    setFilterTerm(filterName);
+    console.log("filterName", filterName)
     console.log("filterTerm", filterTerm)
     if(!pageIdentifier)
     {
@@ -48,8 +48,8 @@ function App() {
 
   }
 
-  const searchHandler = (searchterm) => {
-    setSearchTerm(searchterm);
+  const searchHandler = (searchTerm) => {
+    setSearchTerm(searchTerm);
     console.log(searchTerm);
     if(!pageIdentifier)
     {
