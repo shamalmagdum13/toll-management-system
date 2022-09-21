@@ -93,7 +93,7 @@ export default function AddToll(props) {
                 <tbody>
                     <tr >
                         <td>
-                            <select required onChange={(e) => {setRow1Vec(e.target.value)}}>
+                            <select required value={row1Vec} onChange={(e) => {setRow1Vec(e.target.value)}}>
                                 <option value="">Select</option>
                                 <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
                                 <option value="LCV">LCV</option>
@@ -102,16 +102,16 @@ export default function AddToll(props) {
                             </select>
                         </td>
                         <td>
-                            <input required type="number" placeholder='Single Journey' onChange={(e) => {setRow1SingleJrny(e.target.value)}}/>
+                            <input required type="number" value={row1SingleJrny} placeholder='Single Journey' onChange={(e) => {setRow1SingleJrny(e.target.value)}}/>
                         </td>
                         <td>
-                            <input required type="number" placeholder='Return Journey' onChange={(e) => {setRow1ReturnJrny(e.target.value)}}/>
+                            <input required type="number" value={row1ReturnJrny} placeholder='Return Journey' onChange={(e) => {setRow1ReturnJrny(e.target.value)}}/>
                         </td>
                     </tr >
 
                     <tr>
                         <td>
-                            <select required onChange={(e) => {setRow2Vec(e.target.value)}}>
+                            <select required value={row2Vec} onChange={(e) => {setRow2Vec(e.target.value)}}>
                                 <option value="">Select</option>
                                 <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
                                 <option value="LCV">LCV</option>
@@ -120,16 +120,16 @@ export default function AddToll(props) {
                             </select>
                         </td>
                         <td>
-                            <input required type="number" placeholder='Single Journey' onChange={(e) => {setRow2SingleJrny(e.target.value)}}/>
+                            <input required type="number" value={row2SingleJrny} placeholder='Single Journey' onChange={(e) => {setRow2SingleJrny(e.target.value)}}/>
                         </td>
                         <td>
-                            <input required type="number" placeholder='Return Journey' onChange={(e) => {setRow2ReturnJrny(e.target.value)}}/>
+                            <input required type="number" value={row2ReturnJrny} placeholder='Return Journey' onChange={(e) => {setRow2ReturnJrny(e.target.value)}}/>
                         </td>
                     </tr >  
 
                     <tr>
                         <td>
-                            <select required onChange={(e) => {setRow3Vec(e.target.value)}}>
+                            <select required value={row3Vec} onChange={(e) => {setRow3Vec(e.target.value)}}>
                                 <option value="">Select</option>
                                 <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
                                 <option value="LCV">LCV</option>
@@ -138,16 +138,16 @@ export default function AddToll(props) {
                             </select>
                         </td>
                         <td>
-                            <input required type="number" placeholder='Single Journey' onChange={(e) => {setRow3SingleJrny(e.target.value)}}/>
+                            <input required type="number" value={row3SingleJrny} placeholder='Single Journey' onChange={(e) => {setRow3SingleJrny(e.target.value)}}/>
                         </td>
                         <td>
-                            <input required type="number" placeholder='Return Journey' onChange={(e) => {setRow3ReturnJrny(e.target.value)}}/>
+                            <input required type="number" value={row3ReturnJrny} placeholder='Return Journey' onChange={(e) => {setRow3ReturnJrny(e.target.value)}}/>
                         </td>
                     </tr >  
 
                     <tr>
                         <td>
-                            <select required onChange={(e) => {setRow4Vec(e.target.value)}}>
+                            <select required value={row4Vec} onChange={(e) => {setRow4Vec(e.target.value)}}>
                                 <option value="">Select</option>
                                 <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
                                 <option value="LCV">LCV</option>
@@ -156,10 +156,10 @@ export default function AddToll(props) {
                             </select>
                         </td>
                         <td>
-                            <input required type="number" placeholder='Single Journey' onChange={(e) => {setRow4SingleJrny(e.target.value)}}/>
+                            <input required type="number" value={row1Vec} placeholder='Single Journey' onChange={(e) => {setRow4SingleJrny(e.target.value)}}/>
                         </td>
                         <td>
-                            <input required type="number" placeholder='Return Journey' onChange={(e) => {setRow4ReturnJrny(e.target.value)}}/>
+                            <input required type="number" value={row1Vec} placeholder='Return Journey' onChange={(e) => {setRow4ReturnJrny(e.target.value)}}/>
                         </td>
                     </tr >    
                 </tbody>

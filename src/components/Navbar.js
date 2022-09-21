@@ -6,16 +6,16 @@ import './Navbar.css';
 
 export default function Navbar(props) {
 
-  const[navData, setNavData] = useState({link:'/viewTolls', btnText:'View new tolls', searchPlaceholder:'Search Vehicle'})
+  const[navData, setNavData] = useState({link:'/viewTolls', btnText:'View new tolls', searchPlaceholder:'Search Vehicle', title:'Toll Entries/Vehicle Entries', showFilter:true})
   const inputEl = useRef("");
   const selectEl = useRef("");
   function changeNavData () {
     if(navData.btnText ==='Back to vehicle logs'){
-      setNavData({link:'/viewTolls', btnText:'View new tolls', searchPlaceholder:'Search vehicle', title:'Toll Entries/Vehicle Entries'})
+      setNavData({link:'/viewTolls', btnText:'View new tolls', searchPlaceholder:'Search vehicle', title:'Toll Entries/Vehicle Entries', showFilter:true})
       props.setPageIdentifier(false);
     } 
     else{
-      setNavData({link:'/', btnText:'Back to vehicle logs', searchPlaceholder:'Search a toll', title:'Tollgate List'})
+      setNavData({link:'/', btnText:'Back to vehicle logs', searchPlaceholder:'Search a toll', title:'Tollgate List', showFilter:false})
       props.setPageIdentifier(true);
   }
 }
@@ -34,7 +34,7 @@ function getFilterTerm (){
     <div className="topnav" >
     <div className='leftDiv'>
         <p className="heading">{navData.title}</p>
-        <select  value={props.filterTerm} ref={selectEl} onChange={() => {getFilterTerm()}}>
+        {navData.showFilter && <select  value={props.filterTerm} ref={selectEl} onChange={() => {getFilterTerm()}}>
                 <option value="">Select</option>
                 <option value="all">All</option>
                 {props.tolls.map((toll) => {
@@ -42,7 +42,7 @@ function getFilterTerm (){
                   <option value={toll.tollName}>{toll.tollName}</option>   
                 );
                 })}
-            </select>
+            </select>}
         <FontAwesomeIcon icon={faFilter}></FontAwesomeIcon>
         <input className="searchBar" placeholder={navData.searchPlaceholder} ref={inputEl} value={props.term} onChange={() => {getSearchTerm()}}/>
         <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
