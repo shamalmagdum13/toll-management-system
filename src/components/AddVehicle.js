@@ -31,7 +31,7 @@ export default function AddVehicle( props) {
     <div className='modalContainer'>
     <div className='titleCloseBtn'>
     <Link to="/">
-        <button onClick={() => {props.closeDialogBox(false)}}>X</button>
+        <button onClick={() => {props.closeDialogVec(false)}}>X</button>
     </Link>
     </div>
     <div className='title'>

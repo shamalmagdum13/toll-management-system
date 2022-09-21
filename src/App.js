@@ -18,7 +18,8 @@ function App() {
   const [tolls, setTolls] = useState(
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_TOLLS_KEY)) ?? []
   ); 
-  const [dialogBox, setDialogBox] = useState(false);
+  const [dialogVec, setDialogVec] = useState(false);
+  const [dialogToll, setDialogToll] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [pageIdentifier, setPageIdentifier] = useState(false);
@@ -108,8 +109,17 @@ function App() {
   return (
     <div>
     <Router>
+    {dialogVec && <AddVehicle 
+                   addVehicleHandler={addVehicleHandler} 
+                   closeDialogVec ={setDialogVec}
+                   tolls = {tolls}/>}
 
-        <Navbar setDialogBox={setDialogBox} 
+    {dialogToll && <AddToll 
+                      addTollHandler={addTollHandler} 
+                      closeDialogToll ={setDialogToll}/>  }
+
+        <Navbar setDialogVec={setDialogVec} 
+                setDialogToll={setDialogToll} 
                 setPageIdentifier={setPageIdentifier}
                 term = {searchTerm}
                 searchKeyword = {searchHandler}
@@ -117,9 +127,10 @@ function App() {
                 filterKeyword = {filterHandler}
                 tolls = {tolls} />
 
+
         <Routes>
             <Route path='/' exact element={ <VehicleList vehicles = {filterTerm === "" || filterTerm === "all" ? vehicles : searchResults}/> } />
-            <Route path="/addVehicle" 
+            {/* <Route path="/addVehicle" 
                    element={ dialogBox && <AddVehicle 
                    addVehicleHandler={addVehicleHandler} 
                    closeDialogBox ={setDialogBox}
@@ -129,7 +140,7 @@ function App() {
                    element={ dialogBox && <AddToll 
                   addTollHandler={addTollHandler} 
                    closeDialogBox2 ={setDialogBox}/> }
-            />
+            /> */}
             <Route path="/viewTolls" 
                    element={ pageIdentifier && <TollList tolls = {searchTerm === "" ? tolls : searchResults}/> }
             />

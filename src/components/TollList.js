@@ -23,14 +23,16 @@ export default function TollList(props) {
   <>
     <div className='container'>
     <table rules='rows'>
-      <tr>
-        <th>TOLL NAME</th>
-        <th>CAR/JEEP/VAN</th>
-        <th>LCV</th>
-        <th>TRUCK/BUS</th>
-        <th>HEAVY VEHICLE</th>
-      </tr>
-      {renderTollList}
+      <thead>
+        <tr>
+          <th>TOLL NAME</th>
+          <th>CAR/JEEP/VAN</th>
+          <th>LCV</th>
+          <th>TRUCK/BUS</th>
+          <th>HEAVY VEHICLE</th>
+        </tr>
+      </thead>
+      <tbody>{renderTollList}</tbody>
     </table>
   </div>
   </>

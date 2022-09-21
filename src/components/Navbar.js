@@ -11,11 +11,11 @@ export default function Navbar(props) {
   const selectEl = useRef("");
   function changeNavData () {
     if(navData.btnText ==='Back to vehicle logs'){
-      setNavData({link:'/viewTolls', btnText:'View new tolls', searchPlaceholder:'Search vehicle'})
+      setNavData({link:'/viewTolls', btnText:'View new tolls', searchPlaceholder:'Search vehicle', title:'Toll Entries/Vehicle Entries'})
       props.setPageIdentifier(false);
     } 
     else{
-      setNavData({link:'/', btnText:'Back to vehicle logs', searchPlaceholder:'Search a toll'})
+      setNavData({link:'/', btnText:'Back to vehicle logs', searchPlaceholder:'Search a toll', title:'Tollgate List'})
       props.setPageIdentifier(true);
   }
 }
@@ -33,7 +33,7 @@ function getFilterTerm (){
     <>
     <div className="topnav" >
     <div className='leftDiv'>
-        <p className="heading">Toll Entries/Vehicle Entries</p>
+        <p className="heading">{navData.title}</p>
         <select  value={props.filterTerm} ref={selectEl} onChange={() => {getFilterTerm()}}>
                 <option value="">Select</option>
                 <option value="all">All</option>
@@ -49,10 +49,10 @@ function getFilterTerm (){
     </div>
     <div className='rightDiv'>
     <Link to="/addVehicle">
-        <button className="button" onClick={() => {props.setDialogBox(true)}}>Add vehicle entry</button>
+        <button className="button" onClick={() => {props.setDialogVec(true)}}>Add vehicle entry</button>
     </Link>
     <Link to="/addToll">
-        <button className="button" onClick={() => {props.setDialogBox(true)}}>Add new toll</button>
+        <button className="button" onClick={() => {props.setDialogToll(true)}}>Add new toll</button>
     </Link>
     <Link to={navData.link}>
     <button className="button" onClick={() => {changeNavData()}}>{navData.btnText}</button>

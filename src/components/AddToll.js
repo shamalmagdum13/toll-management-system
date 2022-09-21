@@ -77,7 +77,7 @@ export default function AddToll(props) {
     <div className='modalContainer'>
     <div className='titleCloseBtn'>
     <Link to="/">
-        <button onClick={() => {props.closeDialogBox2(false)}}>X</button>
+        <button onClick={() => {props.closeDialogToll(false)}}>X</button>
     </Link>
     </div>
     <div className='title'>
@@ -164,7 +164,6 @@ export default function AddToll(props) {
                     </tr >    
                 </tbody>
             </table>
-
             <input type="submit" value="Add Toll Details"/>
     </form>
     </div>

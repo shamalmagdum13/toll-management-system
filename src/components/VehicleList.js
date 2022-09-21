@@ -5,7 +5,7 @@ import './Navbar.css'
 export default function VehicleList(props) {
 
   const renderVehicleList = props.vehicles.map((vehicle) => {
-    return (<tr key={vehicle.id}>
+    return (<tr key={vehicle.date}>
               <td>{vehicle.vecType}</td>
               <td>{vehicle.vecNum}</td>
               <td>{vehicle.date}</td>
@@ -18,14 +18,18 @@ export default function VehicleList(props) {
   <>
     <div className='container'>
     <table rules='rows'>
-      <tr>
-        <th>VEHICLE TYPE</th>
-        <th>VEHICLE NUMBER</th>
-        <th>DATE/TIME</th>
-        <th>TOLL NAME</th>
-        <th>TARRIF</th>
-      </tr>
-      {renderVehicleList}
+      <thead>
+        <tr>
+          <th>VEHICLE TYPE</th>
+          <th>VEHICLE NUMBER</th>
+          <th>DATE/TIME</th>
+          <th>TOLL NAME</th>
+          <th>TARRIF</th>
+        </tr>
+      </thead>
+      <tbody>
+        {renderVehicleList}
+      </tbody>
     </table>
   </div>
   </>
