@@ -15,8 +15,8 @@ export default function Navbar(props) {
       props.setPageIndentifier(false);
     } 
     else{
-    setNavData({link:'/', btnText:'Back to vehicle logs', searchPlaceholder:'Search a toll'})
-    props.setPageIndentifier(true);
+      setNavData({link:'/', btnText:'Back to vehicle logs', searchPlaceholder:'Search a toll'})
+      props.setPageIndentifier(true);
   }
 }
 
@@ -24,8 +24,8 @@ function getSearchTerm () {
   props.searchKeyword(inputEl.current.value);
 }
 
-function getFilterTerm (selectedTerm){
-  props.filterKeyword(selectedTerm);
+function getFilterTerm (){
+  props.filterKeyword(selectEl.current.value);
 }
 
   return (
@@ -33,7 +33,7 @@ function getFilterTerm (selectedTerm){
     <div className="topnav" >
     <div className='leftDiv'>
         <p className="heading">Toll Entries/Vehicle Entries</p>
-        <select  value={props.filterTerm}  onChange={(e) => {getFilterTerm(e.target.value)}}>
+        <select  value={props.filterTerm} ref={selectEl} onChange={() => {getFilterTerm()}}>
                 <option value="">Select</option>
                 <option value="all">All</option>
                 <option value="sangli">Sangli</option>

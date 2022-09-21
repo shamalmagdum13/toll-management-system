@@ -18,39 +18,34 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [pageIdentifier, setPageIdentifier] = useState(false);
-  const [filterTerm, setFilterTerm] = useState("");
-  const [filterResults, setFilterResults] = useState([]);
+  const [filterTerm, setFilterTerm] = useState('');
 
   const addVehicleHandler = (vehicle) => {
     setVehicles([...vehicles, {...vehicle }]);
   };
 
-  const filterHandler = (filterName) => {
-    setFilterTerm(filterName);
-    console.log("filterName", filterName)
-    console.log("filterTerm", filterTerm)
+  const filterHandler = (filterTerm) => {
+    setFilterTerm(filterTerm);
     if(!pageIdentifier)
     {
-    if(filterTerm === "" && filterTerm ==="all"){
-      setFilterResults(vehicles);
-      console.log("2ndif", filterResults);
-    }
-    else
-    {
-      const newVehicleList = vehicles.filter((vehicle) => {
-        return vehicle.tollName.toLocaleLowerCase()
-              .includes(filterTerm.toLocaleLowerCase());
-      })
-      setFilterResults(newVehicleList);
-      console.log("1stif",filterResults);
+        if(filterTerm === "" || filterTerm ==="all")
+        {
+           setSearchResults(vehicles);
+        }
+        else
+        {
+          const newVehicleList = vehicles.filter((vehicle) => {
+            return vehicle.tollName.toLocaleLowerCase()
+                  .includes(filterTerm.toLocaleLowerCase());
+          })
+          setSearchResults(newVehicleList);
+        }
     }
   }
 
-  }
 
   const searchHandler = (searchTerm) => {
     setSearchTerm(searchTerm);
-    console.log(searchTerm);
     if(!pageIdentifier)
     {
         if(searchTerm !== "")
@@ -107,7 +102,7 @@ function App() {
                 filterKeyword = {filterHandler}/>
 
         <Routes>
-            <Route path='/' exact element={ <VehicleList vehicles = {searchTerm < 1  ? vehicles : searchResults || filterTerm < 1 ?vehicles: filterResults} /> } />
+            <Route path='/' exact element={ <VehicleList vehicles = {filterTerm === "" || filterTerm === "all" ? vehicles : searchResults} /> } />
             <Route path="/addVehicle" 
                    element={ dialogBox && <AddVehicle 
                    addVehicleHandler={addVehicleHandler} 

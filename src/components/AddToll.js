@@ -10,60 +10,125 @@ export default function AddToll(props) {
     const[vecFareTruck, setVecFareTruck] = useState({vecType:'', singleJrny:0, returnJrny:0});
     const[vecFareHeavyVec, setVecFareHeavyVec] = useState({vecType:'', singleJrny:0, returnJrny:0});
 
-    const handleChangeCarVecType = (e) => {
-        let updatedValue = {};
-        updatedValue = {vecType:e.target.value};
-        setVecFareCar(vecFareCar => ({
-             ...vecFareCar,
-             ...updatedValue
-           }));
+
+    const handleChangeVecType = (e) => {
+        if(e.target.value ==="Car/Jeep/Van")
+        {
+            let updatedValue = {};
+            updatedValue = {vecType:e.target.value};
+            setVecFareCar(vecFareCar => ({
+                 ...vecFareCar,
+                 ...updatedValue
+               }));
+        }
+        if(e.target.value ==="LCV")
+        {
+            let updatedValue = {};
+            updatedValue = {vecType:e.target.value};
+            setVecFareLCV(vecFareLCV => ({
+                 ...vecFareLCV,
+                 ...updatedValue
+               }));
+        }
+        if(e.target.value ==="Truck/Bus")
+        {
+            let updatedValue = {};
+            updatedValue = {vecType:e.target.value};
+            setVecFareTruck(vecFareTruck => ({
+                 ...vecFareTruck,
+                 ...updatedValue
+               }));
+        }
+        if(e.target.value ==="Heavy Vehicle")
+        {
+            let updatedValue = {};
+            updatedValue = {vecType:e.target.value};
+            setVecFareHeavyVec(vecFareHeavyVec => ({
+                 ...vecFareHeavyVec,
+                 ...updatedValue
+               }));
+        }
     }
 
-    const handleChangeCarSingleJrny = (e) => {
-        let updatedValue = {};
-        updatedValue = {singleJrny:e.target.value};
-        setVecFareCar(vecFareCar => ({
-             ...vecFareCar,
-             ...updatedValue
-           }));
+    const handleChangeSingleJrny = (e) => {
+        if(e.target.value ==="Car/Jeep/Van")
+        {
+            let updatedValue = {};
+            updatedValue = {singleJrny:e.target.value};
+            setVecFareCar(vecFareCar => ({
+                ...vecFareCar,
+                ...updatedValue
+              }));
+        }
+        if(e.target.value ==="LCV")
+        {
+            let updatedValue = {};
+            updatedValue = {singleJrny:e.target.value};
+            setVecFareLCV(vecFareLCV => ({
+                 ...vecFareLCV,
+                 ...updatedValue
+               }));
+        }
+        if(e.target.value ==="Truck/Bus")
+        {
+            let updatedValue = {};
+            updatedValue = {singleJrny:e.target.value};
+            setVecFareTruck(vecFareTruck => ({
+                 ...vecFareTruck,
+                 ...updatedValue
+               }));
+        }
+        if(e.target.value ==="Heavy Vehicle")
+        {
+            let updatedValue = {};
+            updatedValue = {singleJrny:e.target.value};
+            setVecFareHeavyVec(vecFareHeavyVec => ({
+                 ...vecFareHeavyVec,
+                 ...updatedValue
+               }));
+        }
     }
 
-    const handleChangeCarReturnJrny = (e) => {
-        let updatedValue = {};
-        updatedValue = {returnJrny:e.target.value};
-        setVecFareCar(vecFareCar => ({
-             ...vecFareCar,
-             ...updatedValue
-           }));
+    
+    const handleChangeReturnJrny = (e) => {
+        if(e.target.value ==="Car/Jeep/Van")
+        {
+            let updatedValue = {};
+            updatedValue = {returnJrny:e.target.value};
+            setVecFareCar(vecFareCar => ({
+                ...vecFareCar,
+                ...updatedValue
+              }));
+        }
+        if(e.target.value ==="LCV")
+        {
+            let updatedValue = {};
+            updatedValue = {returnJrny:e.target.value};
+            setVecFareLCV(vecFareLCV => ({
+                 ...vecFareLCV,
+                 ...updatedValue
+               }));
+        }
+        if(e.target.value ==="Truck/Bus")
+        {
+            let updatedValue = {};
+            updatedValue = {returnJrny:e.target.value};
+            setVecFareTruck(vecFareTruck => ({
+                 ...vecFareTruck,
+                 ...updatedValue
+               }));
+        }
+        if(e.target.value ==="Heavy Vehicle")
+        {
+            let updatedValue = {};
+            updatedValue = {returnJrny:e.target.value};
+            setVecFareHeavyVec(vecFareHeavyVec => ({
+                 ...vecFareHeavyVec,
+                 ...updatedValue
+               }));
+        }
     }
-
-    const handleChangeLCVVecType = (e) => {
-        let updatedValue = {};
-        updatedValue = {vecType:e.target.value};
-        setVecFareLCV(vecFareLCV=> ({
-             ...vecFareLCV,
-             ...updatedValue
-           }));
-    }
-
-    const handleChangeLCVSingleJrny = (e) => {
-        let updatedValue = {};
-        updatedValue = {singleJrny:e.target.value};
-        setVecFareLCV(vecFareLCV => ({
-             ...vecFareLCV,
-             ...updatedValue
-           }));
-    }
-
-    const handleChangeLCVReturnJrny = (e) => {
-        let updatedValue = {};
-        updatedValue = {returnJrny:e.target.value};
-        setVecFareLCV(vecFareLCV => ({
-             ...vecFareLCV,
-             ...updatedValue
-           }));
-    }
-
+ 
 
     function onSubmit(e) {
         e.preventDefault();
@@ -74,7 +139,7 @@ export default function AddToll(props) {
           vecFareTruck: vecFareTruck,
           vecFareHeavyVec: vecFareHeavyVec
         }  
-        console.log("tollData",tollData.vecFareCar);
+        console.log("tollData",tollData);
         // props.addTollHandler(tollData);
         setTollName('');
         setVecFareCar({vecType:'', singleJrny:0, returnJrny:0});
@@ -105,58 +170,59 @@ export default function AddToll(props) {
             <label htmlFor="fareDetails">Vehicle Fare Details*</label>
 
             <div className='fareDetails'>
-                <select required value={vecFareCar.vecType} onChange={(e) => {handleChangeCarVecType(e)}}>
+                <select required value={vecFareCar.vecType} onChange={(e) => {handleChangeVecType(e)}}>
+                    <option value="">Select</option>
                     <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
                     <option value="LCV">LCV</option>
                     <option value="Truck/Bus">Truck/Bus</option>
                     <option value="Heavy vehicle">Heavy vehicle</option>
                 </select>
                 <input type="number" required placeholder="Single Journey"
-                         onChange={(e) => {handleChangeCarSingleJrny(e)}}/>
+                         onChange={(e) => {handleChangeSingleJrny(e)}}/>
                 <input type="number" required placeholder="Return Journey"
-                         onChange={(e) => {handleChangeCarReturnJrny(e)}}/>
+                         onChange={(e) => {handleChangeReturnJrny(e)}}/>
             </div>
 
             
             <div className='fareDetails'>
-                <select required value={vecFareLCV.vecType} onChange={(e) => {setVecFareLCV(e.target.value)}}>
+                <select required value={vecFareLCV.vecType} onChange={(e) => {handleChangeVecType(e)}}>
                     <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
                     <option value="LCV">LCV</option>
                     <option value="Truck/Bus">Truck/Bus</option>
                     <option value="Heavy vehicle">Heavy vehicle</option>
                 </select>
                 <input type="number" required placeholder="Single Journey"
-                       value={vecFareLCV.singleJrny} onChange={(e) => {setVecFareLCV(e.target.value)}}/>
+                       value={vecFareLCV.singleJrny} onChange={(e) => {handleChangeSingleJrny(e)}}/>
                 <input type="number" required placeholder="Return Journey"
-                       value={vecFareLCV.returnJrny} onChange={(e) => {setVecFareLCV(e.target.value)}}/>
+                       value={vecFareLCV.returnJrny}  onChange={(e) => {handleChangeReturnJrny(e)}}/>
             </div>
 
             
             <div className='fareDetails'>
-                <select required value={vecFareTruck.vecType} onChange={(e) => {setVecFareTruck(e.target.value)}}>
+                <select required value={vecFareTruck.vecType} onChange={(e) => {handleChangeVecType(e)}}>
                     <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
                     <option value="LCV">LCV</option>
                     <option value="Truck/Bus">Truck/Bus</option>
                     <option value="Heavy vehicle">Heavy vehicle</option>
                 </select>
                 <input type="number" placeholder="Single Journey"
-                       value={vecFareTruck.singleJrny} onChange={(e) => {setVecFareTruck(e.target.value)}}/>
+                       value={vecFareTruck.singleJrny} onChange={(e) => {handleChangeSingleJrny(e)}}/>
                 <input type="number" placeholder="Return Journey"
-                       value={vecFareTruck.returnJrny} onChange={(e) => {setVecFareTruck(e.target.value)}}/>
+                       value={vecFareTruck.returnJrny}  onChange={(e) => {handleChangeReturnJrny(e)}}/>
             </div>
 
             
             <div className='fareDetails'>
-                <select required value={vecFareHeavyVec.vecType} onChange={(e) => {setVecFareHeavyVec(e.target.value)}}>
+                <select required value={vecFareHeavyVec.vecType} onChange={(e) => {handleChangeVecType(e)}}>
                     <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
                     <option value="LCV">LCV</option>
                     <option value="Truck/Bus">Truck/Bus</option>
                     <option value="Heavy vehicle">Heavy vehicle</option>
                 </select>
                 <input type="number" placeholder="Single Journey"
-                       value={vecFareHeavyVec.singleJrny} onChange={(e) => {setVecFareHeavyVec(e.target.value)}}/>
+                       value={vecFareHeavyVec.singleJrny} onChange={(e) => {handleChangeSingleJrny(e)}}/>
                 <input type="number" placeholder="Return Journey"
-                       value={vecFareHeavyVec.returnJrny} onChange={(e) => {setVecFareTruck(e.target.value)}}/>
+                       value={vecFareHeavyVec.returnJrny}  onChange={(e) => {handleChangeReturnJrny(e)}}/>
             </div>
 
             <input type="submit" value="Add Toll Details"/>
