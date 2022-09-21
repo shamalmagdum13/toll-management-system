@@ -12,16 +12,17 @@ export default function Navbar(props) {
   function changeNavData () {
     if(navData.btnText ==='Back to vehicle logs'){
       setNavData({link:'/viewTolls', btnText:'View new tolls', searchPlaceholder:'Search vehicle'})
-      props.setPageIndentifier(false);
+      props.setPageIdentifier(false);
     } 
     else{
       setNavData({link:'/', btnText:'Back to vehicle logs', searchPlaceholder:'Search a toll'})
-      props.setPageIndentifier(true);
+      props.setPageIdentifier(true);
   }
 }
 
 function getSearchTerm () {
   props.searchKeyword(inputEl.current.value);
+
 }
 
 function getFilterTerm (){
@@ -36,9 +37,11 @@ function getFilterTerm (){
         <select  value={props.filterTerm} ref={selectEl} onChange={() => {getFilterTerm()}}>
                 <option value="">Select</option>
                 <option value="all">All</option>
-                <option value="sangli">Sangli</option>
-                <option value="kolhapur">Kolhapur</option>
-                <option value="satara">Satara</option>
+                {props.tolls.map((toll) => {
+                return (
+                  <option value={toll.tollName}>{toll.tollName}</option>   
+                );
+                })}
             </select>
         <FontAwesomeIcon icon={faFilter}></FontAwesomeIcon>
         <input className="searchBar" placeholder={navData.searchPlaceholder} ref={inputEl} value={props.term} onChange={() => {getSearchTerm()}}/>

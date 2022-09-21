@@ -1,7 +1,23 @@
 import React from 'react';
 import './VehicleList.css';
 
-export default function TollList() {
+export default function TollList(props) {
+
+  
+
+  const renderTollList = props.tolls.map((toll) => {
+    return (<tr>
+              <td>{toll.tollName}</td>
+              {toll.fareDetails?.map((fareDetail) => {
+                return (
+                  <>
+                  <td>{fareDetail.singleJrny}/{fareDetail.returnJrny}</td>
+                  </>
+                );
+              })}
+          </tr>
+    );
+  });
 
   return (
   <>
@@ -14,25 +30,7 @@ export default function TollList() {
         <th>TRUCK/BUS</th>
         <th>HEAVY VEHICLE</th>
       </tr>
-      <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-        <td>50</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>Eve</td>
-        <td>Jackson</td>
-        <td>94</td>
-      </tr>
-      <tr>
-        <td>Adam</td>
-        <td>Johnson</td>
-        <td>67</td>
-        <td>67</td>
-        <td>67</td>
-      </tr>
+      {renderTollList}
     </table>
   </div>
   </>

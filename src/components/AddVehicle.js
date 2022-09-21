@@ -42,9 +42,11 @@ export default function AddVehicle( props) {
             <label htmlFor="toll">Select toll name*</label>
             <select required value={tollName} onChange={(e) => {setTollName(e.target.value)}}>
                 <option value="">Select</option>
-                <option value="sangli">Sangli</option>
-                <option value="kolhapur">Kolhapur</option>
-                <option value="satara">Satara</option>
+                {props.tolls.map((toll) => {
+                return (
+                  <option value={toll.tollName}>{toll.tollName}</option>   
+                );
+                })}
             </select>
 
             <label htmlFor="vecType">Select vehicle type*</label>

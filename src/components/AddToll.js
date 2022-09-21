@@ -5,147 +5,70 @@ import './AddToll.css';
 export default function AddToll(props) {
 
     const[tollName, setTollName] = useState('');
-    const[vecFareCar, setVecFareCar] = useState({vecType:'', singleJrny:0, returnJrny:0});
-    const[vecFareLCV, setVecFareLCV] = useState({vecType:'', singleJrny:0, returnJrny:0});
-    const[vecFareTruck, setVecFareTruck] = useState({vecType:'', singleJrny:0, returnJrny:0});
-    const[vecFareHeavyVec, setVecFareHeavyVec] = useState({vecType:'', singleJrny:0, returnJrny:0});
+   
+    const[row1Vec, setRow1Vec] = useState('');
+    const[row1SingleJrny, setRow1SingleJrny] = useState(0);
+    const[row1ReturnJrny, setRow1ReturnJrny] = useState(0);
 
+    const[row2Vec, setRow2Vec] = useState('');
+    const[row2SingleJrny, setRow2SingleJrny] = useState(0);
+    const[row2ReturnJrny, setRow2ReturnJrny] = useState(0);
 
-    const handleChangeVecType = (e) => {
-        if(e.target.value ==="Car/Jeep/Van")
-        {
-            let updatedValue = {};
-            updatedValue = {vecType:e.target.value};
-            setVecFareCar(vecFareCar => ({
-                 ...vecFareCar,
-                 ...updatedValue
-               }));
-        }
-        if(e.target.value ==="LCV")
-        {
-            let updatedValue = {};
-            updatedValue = {vecType:e.target.value};
-            setVecFareLCV(vecFareLCV => ({
-                 ...vecFareLCV,
-                 ...updatedValue
-               }));
-        }
-        if(e.target.value ==="Truck/Bus")
-        {
-            let updatedValue = {};
-            updatedValue = {vecType:e.target.value};
-            setVecFareTruck(vecFareTruck => ({
-                 ...vecFareTruck,
-                 ...updatedValue
-               }));
-        }
-        if(e.target.value ==="Heavy Vehicle")
-        {
-            let updatedValue = {};
-            updatedValue = {vecType:e.target.value};
-            setVecFareHeavyVec(vecFareHeavyVec => ({
-                 ...vecFareHeavyVec,
-                 ...updatedValue
-               }));
-        }
-    }
+    const[row3Vec, setRow3Vec] = useState('');
+    const[row3SingleJrny, setRow3SingleJrny] = useState(0);
+    const[row3ReturnJrny, setRow3ReturnJrny] = useState(0);
 
-    const handleChangeSingleJrny = (e) => {
-        if(e.target.value ==="Car/Jeep/Van")
-        {
-            let updatedValue = {};
-            updatedValue = {singleJrny:e.target.value};
-            setVecFareCar(vecFareCar => ({
-                ...vecFareCar,
-                ...updatedValue
-              }));
-        }
-        if(e.target.value ==="LCV")
-        {
-            let updatedValue = {};
-            updatedValue = {singleJrny:e.target.value};
-            setVecFareLCV(vecFareLCV => ({
-                 ...vecFareLCV,
-                 ...updatedValue
-               }));
-        }
-        if(e.target.value ==="Truck/Bus")
-        {
-            let updatedValue = {};
-            updatedValue = {singleJrny:e.target.value};
-            setVecFareTruck(vecFareTruck => ({
-                 ...vecFareTruck,
-                 ...updatedValue
-               }));
-        }
-        if(e.target.value ==="Heavy Vehicle")
-        {
-            let updatedValue = {};
-            updatedValue = {singleJrny:e.target.value};
-            setVecFareHeavyVec(vecFareHeavyVec => ({
-                 ...vecFareHeavyVec,
-                 ...updatedValue
-               }));
-        }
-    }
-
-    
-    const handleChangeReturnJrny = (e) => {
-        if(e.target.value ==="Car/Jeep/Van")
-        {
-            let updatedValue = {};
-            updatedValue = {returnJrny:e.target.value};
-            setVecFareCar(vecFareCar => ({
-                ...vecFareCar,
-                ...updatedValue
-              }));
-        }
-        if(e.target.value ==="LCV")
-        {
-            let updatedValue = {};
-            updatedValue = {returnJrny:e.target.value};
-            setVecFareLCV(vecFareLCV => ({
-                 ...vecFareLCV,
-                 ...updatedValue
-               }));
-        }
-        if(e.target.value ==="Truck/Bus")
-        {
-            let updatedValue = {};
-            updatedValue = {returnJrny:e.target.value};
-            setVecFareTruck(vecFareTruck => ({
-                 ...vecFareTruck,
-                 ...updatedValue
-               }));
-        }
-        if(e.target.value ==="Heavy Vehicle")
-        {
-            let updatedValue = {};
-            updatedValue = {returnJrny:e.target.value};
-            setVecFareHeavyVec(vecFareHeavyVec => ({
-                 ...vecFareHeavyVec,
-                 ...updatedValue
-               }));
-        }
-    }
- 
-
-    function onSubmit(e) {
+    const[row4Vec, setRow4Vec] = useState('');
+    const[row4SingleJrny, setRow4SingleJrny] = useState(0);
+    const[row4ReturnJrny, setRow4ReturnJrny] = useState(0);
+   
+    function handleSubmit(e){
         e.preventDefault();
-        const tollData = {
-          tollName: tollName ,
-          vecFareCar: vecFareCar,
-          vecFareLCV: vecFareLCV,
-          vecFareTruck: vecFareTruck,
-          vecFareHeavyVec: vecFareHeavyVec
-        }  
-        console.log("tollData",tollData);
-        // props.addTollHandler(tollData);
+        let row1 = {index: Math.random(), vecType: row1Vec, singleJrny:row1SingleJrny, returnJrny:row1ReturnJrny};
+        let row2 = {index: Math.random(), vecType: row2Vec, singleJrny:row2SingleJrny, returnJrny:row2ReturnJrny};
+        let row3 = {index: Math.random(), vecType: row3Vec, singleJrny:row3SingleJrny, returnJrny:row3ReturnJrny};
+        let row4 = {index: Math.random(), vecType: row4Vec, singleJrny:row4SingleJrny, returnJrny:row4ReturnJrny};
+        
+        const array = [];
+
+        if(row1Vec === "Car/Jeep/Van") array.push(row1);
+        else if(row2Vec === "Car/Jeep/Van") array.push(row2);
+        else if(row3Vec === "Car/Jeep/Van") array.push(row3);
+        else array.push(row4);
+
+        if(row1Vec === "LCV") array.push(row1);
+        else if(row2Vec === "LCV") array.push(row2);
+        else if(row3Vec === "LCV") array.push(row3);
+        else array.push(row4);
+
+        if(row1Vec === "Truck/Bus") array.push(row1);
+        else if(row2Vec === "Truck/Bus") array.push(row2);
+        else if(row3Vec === "Truck/Bus") array.push(row3);
+        else array.push(row4);
+
+        if(row1Vec === "Heavy vehicle") array.push(row1);
+        else if(row2Vec === "Heavy vehicle") array.push(row2);
+        else if(row3Vec === "Heavy vehicle") array.push(row3);
+        else array.push(row4);
+        
+        const formData = {
+            tollName :tollName,
+            fareDetails :array
+        }       
+        props.addTollHandler(formData);
         setTollName('');
-        setVecFareCar({vecType:'', singleJrny:0, returnJrny:0});
-        setVecFareLCV({vecType:'', singleJrny:0, returnJrny:0});
-        setVecFareTruck({vecType:'', singleJrny:0, returnJrny:0});
-        setVecFareHeavyVec({vecType:'', singleJrny:0, returnJrny:0});
+        setRow1Vec('');
+        setRow1SingleJrny(0);
+        setRow1ReturnJrny(0);
+        setRow2Vec('');
+        setRow2SingleJrny(0);
+        setRow2ReturnJrny(0);
+        setRow3Vec('');
+        setRow3SingleJrny(0);
+        setRow3ReturnJrny(0);
+        setRow4Vec('');
+        setRow4SingleJrny(0);
+        setRow4ReturnJrny(0);
         alert("Form Submitted!");
     }
 
@@ -161,75 +84,89 @@ export default function AddToll(props) {
     <h3>Add New Toll</h3>
     </div>
     <div>
-        <form onSubmit={onSubmit}>
-
+        <form onSubmit={handleSubmit}>
             <label htmlFor="tollName">Toll Name*</label>
-            <input type="text" required placeholder="Enter toll name"
-                   value={tollName} onChange={(e) => {setTollName(e.target.value)}}/>
+            <input type="text" required placeholder="Enter toll name" value={tollName} onChange={(e) => {setTollName(e.target.value)}}/>
            
             <label htmlFor="fareDetails">Vehicle Fare Details*</label>
+            <table className="table">
+                <tbody>
+                    <tr >
+                        <td>
+                            <select required onChange={(e) => {setRow1Vec(e.target.value)}}>
+                                <option value="">Select</option>
+                                <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
+                                <option value="LCV">LCV</option>
+                                <option value="Truck/Bus">Truck/Bus</option>
+                                <option value="Heavy vehicle">Heavy vehicle</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input required type="number" placeholder='Single Journey' onChange={(e) => {setRow1SingleJrny(e.target.value)}}/>
+                        </td>
+                        <td>
+                            <input required type="number" placeholder='Return Journey' onChange={(e) => {setRow1ReturnJrny(e.target.value)}}/>
+                        </td>
+                    </tr >
 
-            <div className='fareDetails'>
-                <select required value={vecFareCar.vecType} onChange={(e) => {handleChangeVecType(e)}}>
-                    <option value="">Select</option>
-                    <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
-                    <option value="LCV">LCV</option>
-                    <option value="Truck/Bus">Truck/Bus</option>
-                    <option value="Heavy vehicle">Heavy vehicle</option>
-                </select>
-                <input type="number" required placeholder="Single Journey"
-                         onChange={(e) => {handleChangeSingleJrny(e)}}/>
-                <input type="number" required placeholder="Return Journey"
-                         onChange={(e) => {handleChangeReturnJrny(e)}}/>
-            </div>
+                    <tr>
+                        <td>
+                            <select required onChange={(e) => {setRow2Vec(e.target.value)}}>
+                                <option value="">Select</option>
+                                <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
+                                <option value="LCV">LCV</option>
+                                <option value="Truck/Bus">Truck/Bus</option>
+                                <option value="Heavy vehicle">Heavy vehicle</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input required type="number" placeholder='Single Journey' onChange={(e) => {setRow2SingleJrny(e.target.value)}}/>
+                        </td>
+                        <td>
+                            <input required type="number" placeholder='Return Journey' onChange={(e) => {setRow2ReturnJrny(e.target.value)}}/>
+                        </td>
+                    </tr >  
 
-            
-            <div className='fareDetails'>
-                <select required value={vecFareLCV.vecType} onChange={(e) => {handleChangeVecType(e)}}>
-                    <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
-                    <option value="LCV">LCV</option>
-                    <option value="Truck/Bus">Truck/Bus</option>
-                    <option value="Heavy vehicle">Heavy vehicle</option>
-                </select>
-                <input type="number" required placeholder="Single Journey"
-                       value={vecFareLCV.singleJrny} onChange={(e) => {handleChangeSingleJrny(e)}}/>
-                <input type="number" required placeholder="Return Journey"
-                       value={vecFareLCV.returnJrny}  onChange={(e) => {handleChangeReturnJrny(e)}}/>
-            </div>
+                    <tr>
+                        <td>
+                            <select required onChange={(e) => {setRow3Vec(e.target.value)}}>
+                                <option value="">Select</option>
+                                <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
+                                <option value="LCV">LCV</option>
+                                <option value="Truck/Bus">Truck/Bus</option>
+                                <option value="Heavy vehicle">Heavy vehicle</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input required type="number" placeholder='Single Journey' onChange={(e) => {setRow3SingleJrny(e.target.value)}}/>
+                        </td>
+                        <td>
+                            <input required type="number" placeholder='Return Journey' onChange={(e) => {setRow3ReturnJrny(e.target.value)}}/>
+                        </td>
+                    </tr >  
 
-            
-            <div className='fareDetails'>
-                <select required value={vecFareTruck.vecType} onChange={(e) => {handleChangeVecType(e)}}>
-                    <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
-                    <option value="LCV">LCV</option>
-                    <option value="Truck/Bus">Truck/Bus</option>
-                    <option value="Heavy vehicle">Heavy vehicle</option>
-                </select>
-                <input type="number" placeholder="Single Journey"
-                       value={vecFareTruck.singleJrny} onChange={(e) => {handleChangeSingleJrny(e)}}/>
-                <input type="number" placeholder="Return Journey"
-                       value={vecFareTruck.returnJrny}  onChange={(e) => {handleChangeReturnJrny(e)}}/>
-            </div>
-
-            
-            <div className='fareDetails'>
-                <select required value={vecFareHeavyVec.vecType} onChange={(e) => {handleChangeVecType(e)}}>
-                    <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
-                    <option value="LCV">LCV</option>
-                    <option value="Truck/Bus">Truck/Bus</option>
-                    <option value="Heavy vehicle">Heavy vehicle</option>
-                </select>
-                <input type="number" placeholder="Single Journey"
-                       value={vecFareHeavyVec.singleJrny} onChange={(e) => {handleChangeSingleJrny(e)}}/>
-                <input type="number" placeholder="Return Journey"
-                       value={vecFareHeavyVec.returnJrny}  onChange={(e) => {handleChangeReturnJrny(e)}}/>
-            </div>
+                    <tr>
+                        <td>
+                            <select required onChange={(e) => {setRow4Vec(e.target.value)}}>
+                                <option value="">Select</option>
+                                <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
+                                <option value="LCV">LCV</option>
+                                <option value="Truck/Bus">Truck/Bus</option>
+                                <option value="Heavy vehicle">Heavy vehicle</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input required type="number" placeholder='Single Journey' onChange={(e) => {setRow4SingleJrny(e.target.value)}}/>
+                        </td>
+                        <td>
+                            <input required type="number" placeholder='Return Journey' onChange={(e) => {setRow4ReturnJrny(e.target.value)}}/>
+                        </td>
+                    </tr >    
+                </tbody>
+            </table>
 
             <input type="submit" value="Add Toll Details"/>
-            
-
-
-        </form>
+    </form>
     </div>
     </div>
     </div>

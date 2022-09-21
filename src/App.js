@@ -11,8 +11,12 @@ import TollList from './components/TollList';
 function App() {
 
   const LOCAL_STORAGE_VEHICLES_KEY = "vehicles";
+  const LOCAL_STORAGE_TOLLS_KEY = "tolls";
   const [vehicles, setVehicles] = useState(
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_VEHICLES_KEY)) ?? []
+  ); 
+  const [tolls, setTolls] = useState(
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_TOLLS_KEY)) ?? []
   ); 
   const [dialogBox, setDialogBox] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -23,6 +27,12 @@ function App() {
   const addVehicleHandler = (vehicle) => {
     setVehicles([...vehicles, {...vehicle }]);
   };
+
+  const addTollHandler = (toll) => {
+    setTolls([...tolls, {...toll }]);
+    console.log(tolls);
+  };
+
 
   const filterHandler = (filterTerm) => {
     setFilterTerm(filterTerm);
@@ -46,6 +56,7 @@ function App() {
 
   const searchHandler = (searchTerm) => {
     setSearchTerm(searchTerm);
+    console.log(pageIdentifier);
     if(!pageIdentifier)
     {
         if(searchTerm !== "")
@@ -61,23 +72,23 @@ function App() {
           setSearchResults(vehicles);
         }
     }
-    // else
-    // {
-    //     if(searchTerm !== "")
-    //     {
-    //       const newTollList = vehicles.filter((vehicle) => {
-    //         return vehicle.vecNum.toLocaleLowerCase()
-    //               .includes(searchTerm.toLocaleLowerCase());
-    //       })
-    //       setSearchResults(newVehicleList);
-    //       console.log(searchResults);
-    //     }
-    //     else
-    //     {
-    //       setSearchResults(vehicles);
-    //     }
+    else
+    {
+        if(searchTerm !== "")
+        {
+          const newTollList =tolls.filter((toll) => {
+            return toll.tollName.toLocaleLowerCase()
+                  .includes(searchTerm.toLocaleLowerCase());
+          })
+          setSearchResults(newTollList);
+          console.log(searchResults);
+        }
+        else
+        {
+          setSearchResults(tolls);
+        }
 
-    // }
+    }
     
   };
 
@@ -90,30 +101,37 @@ function App() {
     localStorage.setItem(LOCAL_STORAGE_VEHICLES_KEY, JSON.stringify(vehicles));
   }, [vehicles]);
 
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_TOLLS_KEY, JSON.stringify(tolls));
+  }, [tolls]);
+
   return (
     <div>
     <Router>
 
         <Navbar setDialogBox={setDialogBox} 
-                pageIdentifier={pageIdentifier}
+                setPageIdentifier={setPageIdentifier}
                 term = {searchTerm}
                 searchKeyword = {searchHandler}
                 filterTerm = {filterTerm}
-                filterKeyword = {filterHandler}/>
+                filterKeyword = {filterHandler}
+                tolls = {tolls} />
 
         <Routes>
-            <Route path='/' exact element={ <VehicleList vehicles = {filterTerm === "" || filterTerm === "all" ? vehicles : searchResults} /> } />
+            <Route path='/' exact element={ <VehicleList vehicles = {filterTerm === "" || filterTerm === "all" ? vehicles : searchResults}/> } />
             <Route path="/addVehicle" 
                    element={ dialogBox && <AddVehicle 
                    addVehicleHandler={addVehicleHandler} 
-                   closeDialogBox ={setDialogBox}/> }
+                   closeDialogBox ={setDialogBox}
+                   tolls = {tolls}/> }
             />
             <Route path="/addToll" 
                    element={ dialogBox && <AddToll 
+                  addTollHandler={addTollHandler} 
                    closeDialogBox2 ={setDialogBox}/> }
             />
             <Route path="/viewTolls" 
-                   element={<TollList/> }
+                   element={ pageIdentifier && <TollList tolls = {searchTerm === "" ? tolls : searchResults}/> }
             />
         </Routes>
     </Router>
