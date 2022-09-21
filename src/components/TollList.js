@@ -3,8 +3,6 @@ import './VehicleList.css';
 
 export default function TollList(props) {
 
-  
-
   const renderTollList = props.tolls.map((toll) => {
     return (<tr>
               <td>{toll.tollName}</td>
@@ -32,7 +30,9 @@ export default function TollList(props) {
           <th>HEAVY VEHICLE</th>
         </tr>
       </thead>
-      <tbody>{renderTollList}</tbody>
+      <tbody>
+        {renderTollList}
+        </tbody>
     </table>
   </div>
   </>

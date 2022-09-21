@@ -1,7 +1,5 @@
 import React,{useState, useRef} from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
 
 export default function Navbar(props) {
@@ -34,18 +32,23 @@ function getFilterTerm (){
     <div className="topnav" >
     <div className='leftDiv'>
         <p className="heading">{navData.title}</p>
-        {navData.showFilter && <select  value={props.filterTerm} ref={selectEl} onChange={() => {getFilterTerm()}}>
+        <div>
+          <label>
+            {navData.showFilter && <select  value={props.filterTerm} ref={selectEl} onChange={() => {getFilterTerm()}}>
                 <option value="">Select</option>
                 <option value="all">All</option>
                 {props.tolls.map((toll) => {
                 return (
                   <option value={toll.tollName}>{toll.tollName}</option>   
                 );
-                })}
+            })}
             </select>}
-        <FontAwesomeIcon icon={faFilter}></FontAwesomeIcon>
+            </label>
+        </div>
+        
+        {/* <FontAwesomeIcon icon={faFilter}></FontAwesomeIcon> */}
         <input className="searchBar" placeholder={navData.searchPlaceholder} ref={inputEl} value={props.term} onChange={() => {getSearchTerm()}}/>
-        <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
+        {/* <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon> */}
     </div>
     <div className='rightDiv'>
     <Link to="/addVehicle">

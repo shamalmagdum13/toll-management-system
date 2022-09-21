@@ -82,7 +82,6 @@ function App() {
                   .includes(searchTerm.toLocaleLowerCase());
           })
           setSearchResults(newTollList);
-          console.log(searchResults);
         }
         else
         {

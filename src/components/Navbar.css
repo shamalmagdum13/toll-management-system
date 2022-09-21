@@ -43,6 +43,7 @@
 
 .leftDiv{
     float: left;
+    display: flex;
   }
 
 .rightDiv {
