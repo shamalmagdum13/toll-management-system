@@ -8,10 +8,12 @@ export default function AddVehicle( props) {
   const[vecType, setVecType] = useState('');
   const[vecNum, setVecNum] = useState('');
   const[tariff, setTarrif] = useState('');
+  const[foundResults, setFoundResults] = useState([]);
 
   function onSubmit(e) {
     e.preventDefault();
     const vehicleData = {
+      id: Math.random(),
       tollName: tollName ,
       vecType: vecType,
       vecNum: vecNum,
@@ -26,13 +28,33 @@ export default function AddVehicle( props) {
     alert("Form Submitted!");
   }
 
+  function findTollName (e) {
+    setTollName(e.target.value);
+    props.tolls.filter((toll) => {
+       if(toll.tollName === e.target.value) setFoundResults(toll.fareDetails);
+    })
+  }
+
+  function calculateTariff (e) {
+    setVecNum(e.target.value);
+    foundResults.filter((fareDetail) => {
+        if(fareDetail.vecType === vecType)
+        {
+          // let vec = props.vehicles.filter((vehicle) => {
+          //   return vehicle.vecNum === e.target.value      
+          // })
+          setTarrif(fareDetail.singleJrny);
+        }
+        
+    })
+    
+  }
+
   return (
     <div className='modalBackground'>
     <div className='modalContainer'>
     <div className='titleCloseBtn'>
-    <Link to="/">
         <button onClick={() => {props.closeDialogVec(false)}}>X</button>
-    </Link>
     </div>
     <div className='title'>
     <h3>Add New Entry</h3>
@@ -40,7 +62,7 @@ export default function AddVehicle( props) {
     <div>
         <form onSubmit={onSubmit} >
             <label htmlFor="toll">Select toll name*</label>
-            <select required value={tollName} onChange={(e) => {setTollName(e.target.value)}}>
+            <select required value={tollName} onChange={(e) => {findTollName(e)}}>
                 <option value="">Select</option>
                 {props.tolls.map((toll) => {
                 return (
@@ -58,14 +80,13 @@ export default function AddVehicle( props) {
                 <option value="Heavy Vehicle">Heavy Vehicle</option>
             </select>
 
-            <label htmlFor="vecNum">Vehicle Number</label>
-            <input type="text" required placeholder="Enter your vehicle number" value={vecNum} onChange={(e) => {setVecNum(e.target.value)}}/>
+            <label htmlFor="vecNum">Vehicle Number*</label>
+            <input type="text" required placeholder="Enter your vehicle number" value={vecNum} onChange={(e) => {calculateTariff(e)}}/>
 
-            <label htmlFor="tariff">Tariff</label>
-            <input type="text" required placeholder="Tariff amount" value={tariff} onChange={(e) => {setTarrif(e.target.value)}}/>
+            <label htmlFor="tariff">Tariff*</label>
+            <input type="text" required placeholder="Tariff amount" disabled value={tariff} onChange={(e) => {setTarrif(e.target.value)}}/>
         
             <input type="submit" value="Add Entry"/>
-            {/* <button type="submit">Add Entry</button> */}
         </form>
     </div>
     </div>

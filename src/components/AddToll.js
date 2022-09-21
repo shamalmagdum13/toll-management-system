@@ -24,10 +24,10 @@ export default function AddToll(props) {
    
     function handleSubmit(e){
         e.preventDefault();
-        let row1 = {index: Math.random(), vecType: row1Vec, singleJrny:row1SingleJrny, returnJrny:row1ReturnJrny};
-        let row2 = {index: Math.random(), vecType: row2Vec, singleJrny:row2SingleJrny, returnJrny:row2ReturnJrny};
-        let row3 = {index: Math.random(), vecType: row3Vec, singleJrny:row3SingleJrny, returnJrny:row3ReturnJrny};
-        let row4 = {index: Math.random(), vecType: row4Vec, singleJrny:row4SingleJrny, returnJrny:row4ReturnJrny};
+        let row1 = {vecType: row1Vec, singleJrny:row1SingleJrny, returnJrny:row1ReturnJrny};
+        let row2 = {vecType: row2Vec, singleJrny:row2SingleJrny, returnJrny:row2ReturnJrny};
+        let row3 = {vecType: row3Vec, singleJrny:row3SingleJrny, returnJrny:row3ReturnJrny};
+        let row4 = {vecType: row4Vec, singleJrny:row4SingleJrny, returnJrny:row4ReturnJrny};
         
         const array = [];
 
@@ -52,6 +52,7 @@ export default function AddToll(props) {
         else array.push(row4);
         
         const formData = {
+            id: Math.random(), 
             tollName :tollName,
             fareDetails :array
         }       
@@ -76,9 +77,7 @@ export default function AddToll(props) {
     <div className='modalBackground'>
     <div className='modalContainer'>
     <div className='titleCloseBtn'>
-    <Link to="/">
         <button onClick={() => {props.closeDialogToll(false)}}>X</button>
-    </Link>
     </div>
     <div className='title'>
     <h3>Add New Toll</h3>
@@ -156,10 +155,10 @@ export default function AddToll(props) {
                             </select>
                         </td>
                         <td>
-                            <input required type="number" value={row1Vec} placeholder='Single Journey' onChange={(e) => {setRow4SingleJrny(e.target.value)}}/>
+                            <input required type="number" value={row4SingleJrny} placeholder='Single Journey' onChange={(e) => {setRow4SingleJrny(e.target.value)}}/>
                         </td>
                         <td>
-                            <input required type="number" value={row1Vec} placeholder='Return Journey' onChange={(e) => {setRow4ReturnJrny(e.target.value)}}/>
+                            <input required type="number" value={row4ReturnJrny} placeholder='Return Journey' onChange={(e) => {setRow4ReturnJrny(e.target.value)}}/>
                         </td>
                     </tr >    
                 </tbody>

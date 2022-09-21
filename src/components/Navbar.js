@@ -20,11 +20,13 @@ export default function Navbar(props) {
 
 function getSearchTerm () {
   props.searchKeyword(inputEl.current.value);
+  props.btnHandler('search');
 
 }
 
 function getFilterTerm (){
   props.filterKeyword(selectEl.current.value);
+  props.btnHandler('filter');
 }
 
   return (
@@ -35,7 +37,7 @@ function getFilterTerm (){
         <div>
           <label>
             {navData.showFilter && <select  value={props.filterTerm} ref={selectEl} onChange={() => {getFilterTerm()}}>
-                <option value="">Select</option>
+                <option value=''>Filter</option>
                 <option value="all">All</option>
                 {props.tolls.map((toll) => {
                 return (
@@ -46,20 +48,15 @@ function getFilterTerm (){
             </label>
         </div>
         
-        {/* <FontAwesomeIcon icon={faFilter}></FontAwesomeIcon> */}
         <input className="searchBar" placeholder={navData.searchPlaceholder} ref={inputEl} value={props.term} onChange={() => {getSearchTerm()}}/>
-        {/* <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon> */}
+
     </div>
     <div className='rightDiv'>
-    <Link to="/addVehicle">
-        <button className="button" onClick={() => {props.setDialogVec(true)}}>Add vehicle entry</button>
-    </Link>
-    <Link to="/addToll">
-        <button className="button" onClick={() => {props.setDialogToll(true)}}>Add new toll</button>
-    </Link>
-    <Link to={navData.link}>
-    <button className="button" onClick={() => {changeNavData()}}>{navData.btnText}</button>
-    </Link>
+      <button className="button" onClick={() => {props.setDialogVec(true)}}>Add vehicle entry</button>
+      <button className="button" onClick={() => {props.setDialogToll(true)}}>Add new toll</button>
+      <Link to={navData.link}>
+      <button className="button" onClick={() => {changeNavData()}}>{navData.btnText}</button>
+      </Link>
     </div>
   </div>
   </>

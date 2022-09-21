@@ -24,6 +24,7 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [pageIdentifier, setPageIdentifier] = useState(false);
   const [filterTerm, setFilterTerm] = useState('');
+  const [btnIdentifier, setBtnIdentifier] = useState('');
 
   const addVehicleHandler = (vehicle) => {
     setVehicles([...vehicles, {...vehicle }]);
@@ -31,7 +32,6 @@ function App() {
 
   const addTollHandler = (toll) => {
     setTolls([...tolls, {...toll }]);
-    console.log(tolls);
   };
 
 
@@ -57,7 +57,6 @@ function App() {
 
   const searchHandler = (searchTerm) => {
     setSearchTerm(searchTerm);
-    console.log(pageIdentifier);
     if(!pageIdentifier)
     {
         if(searchTerm !== "")
@@ -105,13 +104,43 @@ function App() {
     localStorage.setItem(LOCAL_STORAGE_TOLLS_KEY, JSON.stringify(tolls));
   }, [tolls]);
 
+ const btnHandler = (data) =>{
+    setBtnIdentifier(data)
+  }
+
+function vehicleList () {
+  if(btnIdentifier === "filter")
+  {
+      if(filterTerm === "" || filterTerm === "all")return vehicles;
+      else return searchResults;
+  }
+  else if(btnIdentifier === "search")
+  {
+      if(searchTerm === "") return vehicles;
+      else return searchResults;
+  }
+  else
+  {
+      return vehicles;
+  }
+}
+
+const getTollId = (id) =>{
+  const newTollList = tolls.filter((toll) => {
+    return toll.id !== id;
+  })
+  setTolls(newTollList);
+}
+
+  
   return (
     <div>
     <Router>
     {dialogVec && <AddVehicle 
                    addVehicleHandler={addVehicleHandler} 
                    closeDialogVec ={setDialogVec}
-                   tolls = {tolls}/>}
+                   tolls = {tolls}
+                   vehicles = {vehicles}/>}
 
     {dialogToll && <AddToll 
                       addTollHandler={addTollHandler} 
@@ -124,24 +153,15 @@ function App() {
                 searchKeyword = {searchHandler}
                 filterTerm = {filterTerm}
                 filterKeyword = {filterHandler}
-                tolls = {tolls} />
+                tolls = {tolls} 
+                btnHandler ={btnHandler}/>
 
 
         <Routes>
-            <Route path='/' exact element={ <VehicleList vehicles = {filterTerm === "" || filterTerm === "all" ? vehicles : searchResults}/> } />
-            {/* <Route path="/addVehicle" 
-                   element={ dialogBox && <AddVehicle 
-                   addVehicleHandler={addVehicleHandler} 
-                   closeDialogBox ={setDialogBox}
-                   tolls = {tolls}/> }
-            />
-            <Route path="/addToll" 
-                   element={ dialogBox && <AddToll 
-                  addTollHandler={addTollHandler} 
-                   closeDialogBox2 ={setDialogBox}/> }
-            /> */}
+            <Route path='/' exact element={ <VehicleList vehicles = {vehicleList()}/> } />
             <Route path="/viewTolls" 
-                   element={ pageIdentifier && <TollList tolls = {searchTerm === "" ? tolls : searchResults}/> }
+                   element={ pageIdentifier && <TollList tolls = {searchTerm === "" ? tolls : searchResults} 
+                   deleteHandler = {getTollId}/> }
             />
         </Routes>
     </Router>

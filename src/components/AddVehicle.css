@@ -69,4 +69,6 @@ input[type=text], select {
   input[type=submit]:hover {
     background-color: #4095c6
   }
+
+  input[type="text"]:disabled{background-color: rgb(207, 204, 204);}
   

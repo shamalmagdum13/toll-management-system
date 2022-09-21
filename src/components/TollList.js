@@ -13,6 +13,7 @@ export default function TollList(props) {
                   </>
                 );
               })}
+              <td><button onClick={() => {props.deleteHandler(toll.id)}}>Delete</button></td>
           </tr>
     );
   });
@@ -28,6 +29,7 @@ export default function TollList(props) {
           <th>LCV</th>
           <th>TRUCK/BUS</th>
           <th>HEAVY VEHICLE</th>
+          <th>Button</th>
         </tr>
       </thead>
       <tbody>
