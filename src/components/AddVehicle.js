@@ -89,7 +89,7 @@ export default function AddVehicle( props) {
                 <option value="Car/Jeep/Van"> Car/Jeep/Van</option>
                 <option value="LCV">LCV</option>
                 <option value="Truck/Bus">Truck/Bus</option>
-                <option value="Heavy Vehicle">Heavy Vehicle</option>
+                <option value="Heavy vehicle">Heavy Vehicle</option>
             </select>
 
             <label htmlFor="vecNum">Vehicle Number*</label>
