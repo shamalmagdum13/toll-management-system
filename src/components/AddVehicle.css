@@ -41,11 +41,9 @@ h3 {
     text-align: center;
 }
 
-button {
-    float: right;
-}
 
-input[type=text], select {
+
+form input[type=text] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -55,6 +53,15 @@ input[type=text], select {
     box-sizing: border-box;
   }
   
+form select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
   input[type=submit] {
     width: 100%;
     background-color: #4eb5f1;
@@ -72,3 +79,4 @@ input[type=text], select {
 
   input[type="text"]:disabled{background-color: rgb(207, 204, 204);}
   
+  input[type="submit"]:disabled{background-color: rgb(184, 183, 189);}

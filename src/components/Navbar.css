@@ -1,4 +1,3 @@
-
 .topnav {
     overflow: hidden;
     padding:1.3em 1.3em 1.3em 0.5em;
@@ -13,12 +12,11 @@
   }
   
   .heading {
-    padding: 10px 20px;
     display: inline-block;
-    margin:0 0 0 1em;
+    margin-right: 20px;
     color:black;
-    text-align:center;
   }
+
   @media screen and (max-width: 600px) {
     .topnav button:not(:first-child) {display: none;}
     .topnav button.icon {
@@ -44,10 +42,12 @@
 .leftDiv{
     float: left;
     display: flex;
+    align-items: center;
   }
 
 .rightDiv {
     float:right;
+    padding-top: 10px;
   }
   
  .button {
@@ -73,7 +73,9 @@
 }
 
 .searchBar {
+    margin-left: 20px;
     width: 250px;
+    height: 20px;
     border-radius: 3.5em;
 }
   

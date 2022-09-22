@@ -159,7 +159,7 @@ const getTollId = (id) =>{
 
         <Routes>
             <Route path='/' exact element={ <VehicleList vehicles = {vehicleList()}/> } />
-            <Route path="/viewTolls" 
+            <Route path="/viewTolls"
                    element={ pageIdentifier && <TollList tolls = {searchTerm === "" ? tolls : searchResults} 
                    deleteHandler = {getTollId}/> }
             />

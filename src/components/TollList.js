@@ -1,5 +1,6 @@
 import React from 'react';
 import './VehicleList.css';
+import './TollList.css';
 
 export default function TollList(props) {
 
@@ -18,26 +19,55 @@ export default function TollList(props) {
     );
   });
 
-  return (
-  <>
+  if(props.tolls.length >0)
+  {
+    return (
+      <>
+        <div className='container'>
+        <table rules='rows'>
+          <thead>
+            <tr>
+              <th>TOLL NAME</th>
+              <th>CAR/JEEP/VAN</th>
+              <th>LCV</th>
+              <th>TRUCK/BUS</th>
+              <th>HEAVY VEHICLE</th>
+              <th>Button</th>
+            </tr>
+          </thead>
+          <tbody>
+            {renderTollList}
+            </tbody>
+        </table>
+      </div>
+      </>
+      )
+  }
+  else
+  {
+    return(
     <div className='container'>
+
     <table rules='rows'>
-      <thead>
-        <tr>
-          <th>TOLL NAME</th>
-          <th>CAR/JEEP/VAN</th>
-          <th>LCV</th>
-          <th>TRUCK/BUS</th>
-          <th>HEAVY VEHICLE</th>
-          <th>Button</th>
-        </tr>
-      </thead>
-      <tbody>
-        {renderTollList}
-        </tbody>
+        <thead>
+            <tr>
+              <th>TOLL NAME</th>
+              <th>CAR/JEEP/VAN</th>
+              <th>LCV</th>
+              <th>TRUCK/BUS</th>
+              <th>HEAVY VEHICLE</th>
+              <th>Button</th>
+            </tr>
+        </thead>
     </table>
+    <div className='notFound'>
+          <h2>
+          Toll Not Found
+        </h2>
+    </div>
   </div>
-  </>
-  )
-}
+    )
+  }
+  }
+
 

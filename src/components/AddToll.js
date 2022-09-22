@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
 import './AddToll.css';
 
 export default function AddToll(props) {
@@ -21,6 +20,22 @@ export default function AddToll(props) {
     const[row4Vec, setRow4Vec] = useState('');
     const[row4SingleJrny, setRow4SingleJrny] = useState(0);
     const[row4ReturnJrny, setRow4ReturnJrny] = useState(0);
+    const [isValid, setValid] = useState(true);
+
+    const validate = () => {
+      if(tollName ==='' || row1Vec ==="" || row1SingleJrny ==="" || row1ReturnJrny===""
+      || row2Vec ==="" || row2SingleJrny ==="" || row2ReturnJrny===""
+      || row3Vec ==="" || row3SingleJrny ==="" || row3ReturnJrny===""
+      || row4Vec ==="" || row4SingleJrny ==="" || row4ReturnJrny==="") return true;
+    };
+    useEffect(() => {
+      const isValid = validate();
+      setValid(isValid);
+    }, [tollName,
+        row1Vec, row1SingleJrny, row1ReturnJrny,
+        row2Vec, row2SingleJrny, row2ReturnJrny,
+        row3Vec, row3SingleJrny, row3ReturnJrny,
+        row4Vec, row4SingleJrny, row4ReturnJrny]);
    
     function handleSubmit(e){
         e.preventDefault();
@@ -163,7 +178,7 @@ export default function AddToll(props) {
                     </tr >    
                 </tbody>
             </table>
-            <input type="submit" value="Add Toll Details"/>
+            <input type="submit" value="Add Toll Details" disabled={isValid}/>
     </form>
     </div>
     </div>

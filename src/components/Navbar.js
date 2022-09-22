@@ -33,8 +33,7 @@ function getFilterTerm (){
     <>
     <div className="topnav" >
     <div className='leftDiv'>
-        <p className="heading">{navData.title}</p>
-        <div>
+        <h3 className="heading">{navData.title}</h3>
           <label>
             {navData.showFilter && <select  value={props.filterTerm} ref={selectEl} onChange={() => {getFilterTerm()}}>
                 <option value=''>Filter</option>
@@ -46,10 +45,7 @@ function getFilterTerm (){
             })}
             </select>}
             </label>
-        </div>
-        
         <input className="searchBar" placeholder={navData.searchPlaceholder} ref={inputEl} value={props.term} onChange={() => {getSearchTerm()}}/>
-
     </div>
     <div className='rightDiv'>
       <button className="button" onClick={() => {props.setDialogVec(true)}}>Add vehicle entry</button>

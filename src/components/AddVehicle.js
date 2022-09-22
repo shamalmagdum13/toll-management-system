@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import './AddVehicle.css';
 
 export default function AddVehicle( props) {
@@ -9,6 +8,15 @@ export default function AddVehicle( props) {
   const[vecNum, setVecNum] = useState('');
   const[tariff, setTarrif] = useState('');
   const[foundResults, setFoundResults] = useState([]);
+  const [isValid, setValid] = useState(true);
+
+  const validate = () => {
+    if(tollName ==='' || vecType ==="" || vecNum ==="" || tariff==="") return true;
+  };
+  useEffect(() => {
+    const isValid = validate();
+    setValid(isValid);
+  }, [tollName, vecType, vecNum]);
 
   function onSubmit(e) {
     e.preventDefault();
@@ -18,7 +26,7 @@ export default function AddVehicle( props) {
       vecType: vecType,
       vecNum: vecNum,
       tariff: tariff,
-      date: new Date().toLocaleString()
+      date: new Date()
     }  
     props.addVehicleHandler(vehicleData);
     setTollName('');
@@ -28,27 +36,31 @@ export default function AddVehicle( props) {
     alert("Form Submitted!");
   }
 
-  function findTollName (e) {
-    setTollName(e.target.value);
-    props.tolls.filter((toll) => {
-       if(toll.tollName === e.target.value) setFoundResults(toll.fareDetails);
-    })
-  }
 
-  function calculateTariff (e) {
-    setVecNum(e.target.value);
+  useEffect(() => {
+    props.tolls.filter((toll) => {
+      if(toll.tollName === tollName) setFoundResults(toll.fareDetails);
+   })
     foundResults.filter((fareDetail) => {
         if(fareDetail.vecType === vecType)
         {
-          // let vec = props.vehicles.filter((vehicle) => {
-          //   return vehicle.vecNum === e.target.value      
-          // })
-          setTarrif(fareDetail.singleJrny);
-        }
-        
+          const vec = props.vehicles.filter((vehicle) => {
+            return vehicle.vecNum === vecNum      
+          })
+          if(vec.length === 0)
+          {
+            setTarrif(fareDetail.singleJrny);
+          }
+          else
+          {
+            let diff =new Date() - vec[vec.length -1].date;
+            var diffMins = Math.round(((diff % 86400000) % 3600000) / 60000);
+            if(diffMins <= 60) setTarrif(fareDetail.returnJrny);
+            else setTarrif(fareDetail.singleJrny);
+          }
+        }   
     })
-    
-  }
+  }, [tollName, vecType, vecNum]);
 
   return (
     <div className='modalBackground'>
@@ -60,9 +72,9 @@ export default function AddVehicle( props) {
     <h3>Add New Entry</h3>
     </div>
     <div>
-        <form onSubmit={onSubmit} >
+        <form onSubmit={onSubmit} className="form" >
             <label htmlFor="toll">Select toll name*</label>
-            <select required value={tollName} onChange={(e) => {findTollName(e)}}>
+            <select required value={tollName} onChange={(e) => {setTollName(e.target.value)}}>
                 <option value="">Select</option>
                 {props.tolls.map((toll) => {
                 return (
@@ -81,12 +93,12 @@ export default function AddVehicle( props) {
             </select>
 
             <label htmlFor="vecNum">Vehicle Number*</label>
-            <input type="text" required placeholder="Enter your vehicle number" value={vecNum} onChange={(e) => {calculateTariff(e)}}/>
+            <input type="text" required pattern="[a-zA-Z0-9]+" placeholder="Enter your vehicle number" value={vecNum} onChange={(e) => {setVecNum(e.target.value)}}/>
 
             <label htmlFor="tariff">Tariff*</label>
             <input type="text" required placeholder="Tariff amount" disabled value={tariff} onChange={(e) => {setTarrif(e.target.value)}}/>
         
-            <input type="submit" value="Add Entry"/>
+            <input type="submit" value="Add Entry" disabled={isValid}/>
         </form>
     </div>
     </div>
